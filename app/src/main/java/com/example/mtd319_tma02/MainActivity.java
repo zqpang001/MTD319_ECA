@@ -63,7 +63,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 viewPager.setCurrentItem(currentPage + 1);
-//                currentPage += 1;
             }
         });
 

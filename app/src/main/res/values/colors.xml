@@ -8,4 +8,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="purple_update">#4D744FC6</color>
+    <color name="teal_600">#63B6AD</color>
+    <color name="grey_1">#E6E7E8</color>
 </resources>
