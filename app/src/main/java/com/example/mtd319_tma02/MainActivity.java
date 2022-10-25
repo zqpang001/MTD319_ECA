@@ -54,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
         musicBtn = findViewById(R.id.musicBtn);
         mediaPlayer = MediaPlayer.create(this, R.raw.song);
 
-
         dotsIndicator.attachTo(viewPager);
 
 
