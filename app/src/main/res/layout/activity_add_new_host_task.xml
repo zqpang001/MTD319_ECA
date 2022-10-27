@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddNewHostActivity_Task">
+
+    <ImageView
+        android:id="@+id/addNewPhoto"
+        android:layout_width="145dp"
+        android:layout_height="139dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="25dp"
+        android:onClick="addNewPhoto"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/addnewphoto" />
+
+    <TextView
+        android:id="@+id/category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="20dp"
+        android:text="Category"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addNewPhoto"
+        app:layout_constraintVertical_bias="0.164" />
+
+    <Spinner
+        android:id="@+id/categorySpinnerField"
+        android:layout_width="320dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="15dp"
+        android:entries="@array/category"
+        android:inputType="textPersonName"
+        android:background="@drawable/spinner_bg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/category" />
+
+    <TextView
+        android:id="@+id/listingTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="20dp"
+        android:text="Listing Title"
+        app:layout_constraintStart_toStartOf="@+id/category"
+        app:layout_constraintTop_toBottomOf="@+id/categorySpinnerField" />
+
+    <EditText
+        android:id="@+id/listingTitleField"
+        android:layout_width="320dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="15dp"
+        android:inputType="textPersonName"
+        android:background="@drawable/textfield_bg"
+        android:hint="Name of your listing"
+        android:paddingLeft="10dp"
+        android:textSize="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listingTitle" />
+
+    <TextView
+        android:id="@+id/detailOfItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Detail of the item"
+        android:textSize="22dp"
+        android:textColor="@color/teal_600"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/listingTitle"
+        app:layout_constraintTop_toBottomOf="@+id/listingTitleField" />
+
+    <TextView
+        android:id="@+id/price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Price"
+        app:layout_constraintStart_toStartOf="@+id/listingTitle"
+        app:layout_constraintTop_toBottomOf="@+id/detailOfItem" />
+
+    <EditText
+        android:id="@+id/priceTextField"
+        android:layout_width="320dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/textfield_bg"
+        android:hint="Price of your item"
+        android:inputType="textPersonName"
+        android:paddingLeft="10dp"
+        android:textSize="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/price" />
+
+    <TextView
+        android:id="@+id/quantityAvailable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Quantity available"
+        app:layout_constraintStart_toStartOf="@+id/price"
+        app:layout_constraintTop_toBottomOf="@+id/priceTextField" />
+
+    <EditText
+        android:id="@+id/quantityAvailableTextField"
+        android:layout_width="320dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/textfield_bg"
+        android:hint="Enter quantity availability"
+        android:inputType="textPersonName"
+        android:paddingLeft="10dp"
+        android:textSize="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/quantityAvailable" />
+
+    <CheckBox
+        android:id="@+id/deliveryCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
+        android:drawableLeft="@android:color/transparent"
+        android:layoutDirection="rtl"
+        android:paddingRight="162dp"
+        android:text="Delivery availability"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/quantityAvailableTextField" />
+
+    <TextView
+        android:id="@+id/location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Location"
+        app:layout_constraintStart_toStartOf="@+id/quantityAvailable"
+        app:layout_constraintTop_toBottomOf="@+id/deliveryCheckBox" />
+
+    <EditText
+        android:id="@+id/locationTextField"
+        android:layout_width="320dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/textfield_bg"
+        android:hint="Location of collection for self-pickup"
+        android:inputType="textPersonName"
+        android:paddingLeft="10dp"
+        android:textSize="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/location" />
+
+    <Button
+        android:id="@+id/confirmButton"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/confirmbutton_bg"
+        android:text="Confirm"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="@+id/locationTextField"
+        app:layout_constraintTop_toBottomOf="@+id/locationTextField" />
+
+    <ImageView
+        android:id="@+id/testImage"
+        android:layout_width="78dp"
+        android:layout_height="82dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toEndOf="@+id/addNewPhoto"
+        app:layout_constraintTop_toTopOf="@+id/addNewPhoto"
+        tools:srcCompat="@tools:sample/avatars" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
