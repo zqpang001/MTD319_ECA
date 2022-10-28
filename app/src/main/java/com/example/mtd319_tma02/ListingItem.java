@@ -9,9 +9,9 @@ public class ListingItem {
     public String quantity;
     public String location;
     public String deliveryAvailability;
-    public Bitmap image;
+    public String image;
 
-    public ListingItem(String category, String listingTitle, String price, String quantity, String location, String deliveryAvailability, Bitmap image){
+    public ListingItem(String category,String listingTitle, String price, String quantity, String location,String deliveryAvailability,String image){
         this.category=category;
         this.listingTitle=listingTitle;
         this.price=price;
