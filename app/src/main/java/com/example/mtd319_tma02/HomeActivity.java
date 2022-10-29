@@ -28,9 +28,9 @@ import java.util.List;
 import java.util.Map;
 
 public class HomeActivity extends AppCompatActivity {
+//    static ArrayList<ListingItem> listingItemA = new ArrayList<ListingItem>();
+//    static ListingItem[] listingItemArray;
 
-    static ListingItem[] listingItemArray;
-    static ArrayList<ListingItem> listingItemA = new ArrayList<ListingItem>();
 
     RecyclerView homeRecyclerView;
     HomeItemAdapter homeItemAdapter;
@@ -42,30 +42,32 @@ public class HomeActivity extends AppCompatActivity {
 
         homeRecyclerView = findViewById(R.id.homeRecycleView);
 
-        homeItemAdapter = new HomeItemAdapter(listingItemA);
+        homeItemAdapter = new HomeItemAdapter(SignInActivity.listingItemA);
         homeRecyclerView.setAdapter(homeItemAdapter);
         homeRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "https://mtd319-ed05.restdb.io/rest/host?apikey=6357f014626b9c747864aeeb";
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Log.d("response: ",response);
-                Gson gson = new Gson();
-                listingItemArray = gson.fromJson(response,ListingItem[].class);
-                for (int i = 0; i < listingItemArray.length; i++){
-                    Log.d("listing items: ", "  "+listingItemArray[i].image);
-                    listingItemA.add(listingItemArray[i]);
-                }
-//                Log.d("Home Activity get from restdb: " , Arrays.toString(listingItemA));
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-            }
-        });
-        queue.add(stringRequest);
+//        SignInActivity.callListingItem();
+//        RequestQueue queue = Volley.newRequestQueue(this);
+//        String url = "https://mtd319-ed05.restdb.io/rest/host?apikey=6357f014626b9c747864aeeb";
+//        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+//            @Override
+//            public void onResponse(String response) {
+//                Log.d("response: ",response);
+//                Gson gson = new Gson();
+//                listingItemArray = gson.fromJson(response,ListingItem[].class);
+//                for (int i = 0; i < listingItemArray.length; i++){
+//                    Log.d("listing items: ", "  "+listingItemArray[i].image);
+//                    listingItemA.add(listingItemArray[i]);
+//
+//                }
+////                Log.d("Home Activity get from restdb: " , Arrays.toString(listingItemA));
+//
+//            }
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//            }
+//        });
+//        queue.add(stringRequest);
 
 
 

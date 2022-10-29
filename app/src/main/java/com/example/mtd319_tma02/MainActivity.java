@@ -3,6 +3,7 @@ package com.example.mtd319_tma02;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.media.MediaPlayer;
@@ -215,7 +216,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void clickSkipBtn(View view) {
         Intent intent = new Intent();
-        intent = new Intent(this,AddNewHostActivity_Task.class);
+            intent = new Intent(this,SignInActivity.class);
         startActivity(intent);
     }
 }

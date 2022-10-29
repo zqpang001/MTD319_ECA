@@ -31,7 +31,6 @@ public class HomeItemAdapter extends RecyclerView.Adapter<MyHomeView> {
     public HomeItemAdapter(List<ListingItem> listingItems) {
         this.listingItems = listingItems;
     }
-    URL newurl;
     List<ListingItem> listingItems;
     Context context;
 

@@ -115,6 +115,7 @@ public class AddNewHostActivity_Task extends AppCompatActivity implements Adapte
                         startActivity(new Intent(getApplicationContext()
                                 ,HomeActivity.class));
                         overridePendingTransition(0,0);
+                        SignInActivity.callListingItem();
                         return true;
                     case R.id.host:
                         startActivity(new Intent(getApplicationContext()
@@ -258,7 +259,8 @@ public class AddNewHostActivity_Task extends AppCompatActivity implements Adapte
                 String jsonString = gson.toJson(listingItem);
                 Map map = gson.fromJson(jsonString, Map.class);
                 Log.d("getMap: ",map.toString());
-//                Log.d("image encode: ",bitmap.toString());
+
+
                 return map;
             }
 
@@ -266,8 +268,8 @@ public class AddNewHostActivity_Task extends AppCompatActivity implements Adapte
 
         };
         queue.add(stringRequest);
-        intent = new Intent(this,AddNewHostActivity_Task.class);
-        startActivity(intent);
+//        intent = new Intent(this,AddNewHostActivity_Task.class);
+//        startActivity(intent);
     }
 
     public void checkDeliveryAvailability(){

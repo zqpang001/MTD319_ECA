@@ -23,15 +23,13 @@
 
         <activity
             android:name=".AddNewHostActivity_Task"
-            android:exported="true"
-            android:windowSoftInputMode="adjustPan">
-
-        </activity>
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".SignInActivity"
+            android:name=".HomeActivity"
             android:exported="false"/>
 
         <activity
@@ -41,7 +39,7 @@
             android:name=".HostActivity"
             android:exported="false" />
         <activity
-            android:name=".HomeActivity"
+            android:name=".SignInActivity"
             android:exported="false" />
         <activity
             android:name=".ExploreActivity"
@@ -51,7 +49,6 @@
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
