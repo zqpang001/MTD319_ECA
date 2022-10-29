@@ -20,4 +20,8 @@ public class ListingItem {
         this.deliveryAvailability=deliveryAvailability;
         this.image=image;
     }
+
+    public String getImage() {
+        return image;
+    }
 }

@@ -2,6 +2,8 @@ package com.example.mtd319_tma02;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,20 +20,31 @@ import com.android.volley.toolbox.Volley;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class HomeActivity extends AppCompatActivity {
 
-    static ArrayList<ListingItem> listingItemArray = new ArrayList<ListingItem>();
+    static ListingItem[] listingItemArray;
+    static ArrayList<ListingItem> listingItemA = new ArrayList<ListingItem>();
+
+    RecyclerView homeRecyclerView;
+    HomeItemAdapter homeItemAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        homeRecyclerView = findViewById(R.id.homeRecycleView);
+
+        homeItemAdapter = new HomeItemAdapter(listingItemA);
+        homeRecyclerView.setAdapter(homeItemAdapter);
+        homeRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = "https://mtd319-ed05.restdb.io/rest/host?apikey=6357f014626b9c747864aeeb";
@@ -40,13 +53,12 @@ public class HomeActivity extends AppCompatActivity {
             public void onResponse(String response) {
                 Log.d("response: ",response);
                 Gson gson = new Gson();
-                ListingItem[] listingItemA = gson.fromJson(response,ListingItem[].class);
-//                for (int i = 0; i < listingItemA.length; i++){
-//                    Log.d("suss","username: " + listingItemA[i].listingTitle);
-//                    listingItemArray.array(listingItemA[i].listingTitle,listingItemA[i].price,listingItemA[i].image);
-//                }
-//                Log.d("credential list " , listingItem.toString());
-                Log.d("Home Activity get from restdb: " , listingItemA.toString());
+                listingItemArray = gson.fromJson(response,ListingItem[].class);
+                for (int i = 0; i < listingItemArray.length; i++){
+                    Log.d("listing items: ", "  "+listingItemArray[i].image);
+                    listingItemA.add(listingItemArray[i]);
+                }
+//                Log.d("Home Activity get from restdb: " , Arrays.toString(listingItemA));
             }
         }, new Response.ErrorListener() {
             @Override
