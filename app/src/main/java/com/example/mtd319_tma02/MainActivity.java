@@ -15,7 +15,11 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.cloudinary.android.MediaManager;
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,6 +36,16 @@ public class MainActivity extends AppCompatActivity {
 
     private int currentPage;
     boolean musicClick = false;
+
+    private void initConfig() {
+        Map config = new HashMap();
+        config.put("cloud_name", "djyg6gc6k");
+        config.put("api_key", "599563296253257");
+        config.put("api_secret", "jOdaE_9KHP6BMATSsbW2zLqWka8");
+        MediaManager.init(this, config);
+        Log.d("media manager","media manager init success");
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         mediaPlayer = MediaPlayer.create(this, R.raw.song);
 
         dotsIndicator.attachTo(viewPager);
-
+        initConfig();
 
 
         nextBtn.setOnClickListener(new View.OnClickListener() {
@@ -197,5 +211,11 @@ public class MainActivity extends AppCompatActivity {
     public void onPause() {
         super.onPause();
         mediaPlayer.release();
+    }
+
+    public void clickSkipBtn(View view) {
+        Intent intent = new Intent();
+        intent = new Intent(this,AddNewHostActivity_Task.class);
+        startActivity(intent);
     }
 }

@@ -36,6 +36,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.cloudinary.android.MediaManager;
+import com.cloudinary.android.callback.ErrorInfo;
+import com.cloudinary.android.callback.UploadCallback;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
 import com.karumi.dexter.Dexter;
@@ -47,6 +50,7 @@ import com.karumi.dexter.listener.single.PermissionListener;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.Map;
 
 public class AddNewHostActivity_Task extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -66,6 +70,8 @@ public class AddNewHostActivity_Task extends AppCompatActivity implements Adapte
     String encodeImageString;
     Intent intent;
     String isDeliveryAvailable;
+    Uri filepath;
+    String imageUrl;
     private final int GALLERY_REQ_CODE=1000;
 
 
@@ -85,16 +91,19 @@ public class AddNewHostActivity_Task extends AppCompatActivity implements Adapte
         confirmButton = findViewById(R.id.confirmButton);
 
         imgMain=findViewById(R.id.testImage);
-        BottomNavigationView bottomNavigationView= findViewById(R.id.bottomNavigationView);
-//
+//        initConfig();
+
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.category, android.R.layout.simple_spinner_dropdown_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         categorySpinner.setAdapter(adapter);
-
         categorySpinner.setOnItemSelectedListener(this);
 
+        getSupportActionBar().setTitle("Host");
+
+        //Config cloudinary connection
 
 
+        BottomNavigationView bottomNavigationView= findViewById(R.id.bottomNavigationView);
         //Set Host Selected
         bottomNavigationView.setSelectedItemId(R.id.host);
         //Bottom navigation selected
@@ -102,11 +111,11 @@ public class AddNewHostActivity_Task extends AppCompatActivity implements Adapte
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch(item.getItemId()){
-//                    case R.id.home:
-//                        startActivity(new Intent(getApplicationContext()
-//                                ,AddNewHostActivity_Task.class));
-//                        overridePendingTransition(0,0);
-//                        return true;
+                    case R.id.home:
+                        startActivity(new Intent(getApplicationContext()
+                                ,HomeActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
                     case R.id.host:
                         startActivity(new Intent(getApplicationContext()
                                 ,AddNewHostActivity_Task.class));
@@ -188,12 +197,12 @@ public class AddNewHostActivity_Task extends AppCompatActivity implements Adapte
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode==GALLERY_REQ_CODE && resultCode==RESULT_OK){
 //            imgMain.setImageURI(data.getData());
-            Uri filepath=data.getData();
+            filepath=data.getData();
             try {
                 InputStream inputStream=getContentResolver().openInputStream(filepath);
                 bitmap= BitmapFactory.decodeStream(inputStream);
                 addNewPhoto.setImageBitmap(bitmap);
-                encodeBitmapImage(bitmap);
+//                encodeBitmapImage(bitmap);
             }catch (Exception ex){
 
             }
@@ -208,6 +217,34 @@ public class AddNewHostActivity_Task extends AppCompatActivity implements Adapte
     }
 
     public void confirmUploadListingItem(View view) {
+        MediaManager.get().upload(filepath).callback(new UploadCallback() {
+            @Override
+            public void onStart(String requestId) {
+                Log.d("cloudinary: ","onStart");
+            }
+
+            @Override
+            public void onProgress(String requestId, long bytes, long totalBytes) {
+                Log.d("cloudinary: ","onProgress");
+            }
+
+            @Override
+            public void onSuccess(String requestId, Map resultData) {
+                Log.d("cloudinary: ","onSuccess"+resultData.get("url").toString());
+                imageUrl=resultData.get("url").toString();
+            }
+
+            @Override
+            public void onError(String requestId, ErrorInfo error) {
+                Log.d("cloudinary: ","onError");
+            }
+
+            @Override
+            public void onReschedule(String requestId, ErrorInfo error) {
+                Log.d("cloudinary: ","onReschedule");
+            }
+        }).dispatch();
+
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = "https://mtd319-ed05.restdb.io/rest/host?apikey=6357f014626b9c747864aeeb";
         StringRequest stringRequest = new StringRequest(Request.Method.POST,url,
@@ -216,7 +253,7 @@ public class AddNewHostActivity_Task extends AppCompatActivity implements Adapte
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 checkDeliveryAvailability();
-                ListingItem listingItem = new ListingItem(spinnerSelected,listingTitleField.getText().toString(),priceTextField.getText().toString(),quantityAvailableTextField.getText().toString(),locationTextField.getText().toString(),isDeliveryAvailable,encodeImageString);
+                ListingItem listingItem = new ListingItem(spinnerSelected,listingTitleField.getText().toString(),priceTextField.getText().toString(),quantityAvailableTextField.getText().toString(),locationTextField.getText().toString(),isDeliveryAvailable,imageUrl);
                 Gson gson = new Gson();
                 String jsonString = gson.toJson(listingItem);
                 Map map = gson.fromJson(jsonString, Map.class);
@@ -240,4 +277,18 @@ public class AddNewHostActivity_Task extends AppCompatActivity implements Adapte
             isDeliveryAvailable="false";
         }
     }
+
+    private void initConfig() {
+        Map config = new HashMap();
+        config.put("cloud_name", "djyg6gc6k");
+        config.put("api_key", "599563296253257");
+        config.put("api_secret", "jOdaE_9KHP6BMATSsbW2zLqWka8");
+        try {
+            MediaManager.init(this,config);
+        }catch(Exception e) {
+            Log.d("Media Manager","Media Manager went wrong");
+        }
+
+    }
+
 }

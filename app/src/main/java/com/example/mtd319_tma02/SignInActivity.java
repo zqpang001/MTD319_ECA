@@ -111,6 +111,8 @@ public class SignInActivity extends AppCompatActivity {
             Log.d("checkSignIn", "correct username");
             if(credentialArrayList.containsValue(passwordEditText.getText().toString())) {
                 Log.d("checkSignIn", "correct password");
+                Intent intent = new Intent(this,HomeActivity.class);
+                startActivity(intent);
             }else{
                 Log.d("checkSignIn", "wrong password");
             }

@@ -37,7 +37,8 @@
         android:background="#00144C2B"
         android:text="Skip"
         android:textColor="#24684B"
-        android:visibility="visible" />
+        android:visibility="visible"
+        android:onClick="clickSkipBtn"/>
 
     <Button
         android:id="@+id/learnBtn"
