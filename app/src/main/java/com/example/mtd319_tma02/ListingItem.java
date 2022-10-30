@@ -10,8 +10,9 @@ public class ListingItem {
     public String location;
     public String deliveryAvailability;
     public String image;
+    public String usernameSession;
 
-    public ListingItem(String category,String listingTitle, String price, String quantity, String location,String deliveryAvailability,String image){
+    public ListingItem(String category,String listingTitle, String price, String quantity, String location,String deliveryAvailability,String image,String usernameSession){
         this.category=category;
         this.listingTitle=listingTitle;
         this.price=price;
@@ -19,9 +20,14 @@ public class ListingItem {
         this.location=location;
         this.deliveryAvailability=deliveryAvailability;
         this.image=image;
+        this.usernameSession=usernameSession;
     }
 
     public String getImage() {
         return image;
+    }
+
+    public String getListingTitle() {
+        return listingTitle;
     }
 }

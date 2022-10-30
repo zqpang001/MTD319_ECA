@@ -34,6 +34,11 @@ public class HomeItemAdapter extends RecyclerView.Adapter<MyHomeView> {
     List<ListingItem> listingItems;
     Context context;
 
+    public void setFilteredList(List<ListingItem> filteredList){
+        this.listingItems = filteredList;
+        notifyDataSetChanged();
+    }
+
     @NonNull
     @Override
     public MyHomeView onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -55,44 +60,13 @@ public class HomeItemAdapter extends RecyclerView.Adapter<MyHomeView> {
         priceItem.setText(listingItem.price);
         TextView remainingCount = holder.remainingCount;
         remainingCount.setText(listingItem.quantity);
+        TextView usernameText = holder.usernameSession;
+        usernameText.setText(listingItem.usernameSession);
         ImageView imageItem = holder.imageItem;
         Log.d("piccaso why you dont wan come out","123"   +listingItem.image);
 //        Picasso.get().load(listingItem.getImage()).into(imageItem);
         Glide.with(context).load(listingItem.getImage()).into(imageItem);
 
-
-
-
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                byte[] decodedByte = Base64.decode(listingItem.getImage(), 0);
-//                Bitmap bitmap = BitmapFactory.decodeByteArray(decodedByte, 0, decodedByte.length);
-//                mainHandler.post(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        holder.imageView.setImageBitmap(bitmap);
-//                    }
-//
-//
-//            }
-//        }).start();
-
-
-
-
-//        try {
-//            newurl = new URL(listingItem.image);
-//        } catch (MalformedURLException e) {
-//            e.printStackTrace();
-//        }
-//        Bitmap mIcon_val = null;
-//        try {
-//            mIcon_val = BitmapFactory.decodeStream(newurl.openConnection().getInputStream());
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        imageItem.setImageBitmap(mIcon_val);
     }
 
     @Override

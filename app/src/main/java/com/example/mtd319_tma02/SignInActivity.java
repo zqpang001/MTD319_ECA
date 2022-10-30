@@ -37,7 +37,8 @@ public class SignInActivity extends AppCompatActivity {
     CheckBox rmbBtn;
     ProgressBar progressBar;
     TextView progressText;
-    int counter=0;
+    int counter = 0;
+    public static String usernameSession;
 
     HashMap<String, String> credentialArrayList = new HashMap<String, String>();
 
@@ -152,45 +153,42 @@ public class SignInActivity extends AppCompatActivity {
     }
 
     public void checkSignInCredential(View view) {
-        counter=0;
+        counter = 0;
         progressBar.setVisibility(View.VISIBLE);
         progressText.setVisibility(View.VISIBLE);
-                final Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        if(counter<=100) {
-                            progressText.setText(""+counter);
-                            progressBar.setProgress(counter);
-                            counter++;
-                            handler.postDelayed(this,20);
-                        }else{
-                            handler.removeCallbacks(this);
-                            if (credentialArrayList.containsKey(userNameEditText.getText().toString())) {
-                                Log.d("checkSignIn", "correct username");
-                                if (credentialArrayList.containsValue(passwordEditText.getText().toString())) {
-                                    Log.d("checkSignIn", "correct password");
-                                    Intent intent = new Intent(context, HomeActivity.class);
-                                    startActivity(intent);
-                                } else {
-                                    Log.d("checkSignIn", "wrong password");
-                                }
-                            } else {
-                                Log.d("suss", "wrong username");
-                            }
-                            progressBar.setVisibility(View.INVISIBLE);
-                            progressText.setVisibility(View.INVISIBLE);
-
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (counter <= 100) {
+                    progressText.setText("" + counter);
+                    progressBar.setProgress(counter);
+                    counter++;
+                    handler.postDelayed(this, 15);
+                } else {
+                    handler.removeCallbacks(this);
+                    if (credentialArrayList.containsKey(userNameEditText.getText().toString())) {
+                        Log.d("checkSignIn", "correct username");
+                        if (credentialArrayList.containsValue(passwordEditText.getText().toString())) {
+                            usernameSession=userNameEditText.getText().toString();
+                            Log.d("checkSignIn", "correct password");
+                            Intent intent = new Intent(context, HomeActivity.class);
+                            startActivity(intent);
+                        } else {
+                            Log.d("checkSignIn", "wrong password");
                         }
+                    } else {
+                        Log.d("suss", "wrong username");
                     }
-                },200);
+                    progressBar.setVisibility(View.GONE);
+                    progressText.setVisibility(View.GONE);
 
-
+                }
             }
+        }, 200);
 
 
-
-
+    }
 
 
     public static boolean callListingItem() {

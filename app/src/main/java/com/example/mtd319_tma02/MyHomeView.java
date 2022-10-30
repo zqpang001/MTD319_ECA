@@ -13,6 +13,8 @@ public class MyHomeView extends RecyclerView.ViewHolder {
     public TextView priceItem;
     public TextView remainingCount;
     public ImageView imageItem;
+    public TextView usernameSession;
+
 
     public MyHomeView(@NonNull View itemView) {
         super(itemView);
@@ -21,6 +23,8 @@ public class MyHomeView extends RecyclerView.ViewHolder {
         priceItem = itemView.findViewById(R.id.priceItem);
         remainingCount = itemView.findViewById(R.id.remainingCount);
         imageItem = itemView.findViewById(R.id.imageItem);
+        usernameSession = itemView.findViewById(R.id.usernameText);
+
 
     }
 }

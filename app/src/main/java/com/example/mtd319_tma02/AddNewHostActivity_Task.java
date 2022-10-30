@@ -242,13 +242,12 @@ public class AddNewHostActivity_Task extends AppCompatActivity implements Adapte
                     @Override
                     protected Map<String, String> getParams() throws AuthFailureError {
                         checkDeliveryAvailability();
-                        ListingItem listingItem = new ListingItem(spinnerSelected, listingTitleField.getText().toString(), priceTextField.getText().toString(), quantityAvailableTextField.getText().toString(), locationTextField.getText().toString(), isDeliveryAvailable, imageUrl);
+                        ListingItem listingItem = new ListingItem(spinnerSelected, listingTitleField.getText().toString(), priceTextField.getText().toString()
+                                ,quantityAvailableTextField.getText().toString(), locationTextField.getText().toString(), isDeliveryAvailable, imageUrl,SignInActivity.usernameSession);
                         Gson gson = new Gson();
                         String jsonString = gson.toJson(listingItem);
                         Map map = gson.fromJson(jsonString, Map.class);
                         Log.d("getMap: ", map.toString());
-
-
                         return map;
                     }
 

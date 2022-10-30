@@ -8,17 +8,19 @@
         <entry key="..\:/Andriod Studio/MTD319_ECA/app/src/main/res/drawable/circle_progress_bar.xml" value="0.222" />
         <entry key="..\:/Andriod Studio/MTD319_ECA/app/src/main/res/drawable/circle_shape.xml" value="0.127" />
         <entry key="..\:/Andriod Studio/MTD319_ECA/app/src/main/res/drawable/confirmbutton_bg.xml" value="0.224" />
+        <entry key="..\:/Andriod Studio/MTD319_ECA/app/src/main/res/drawable/home_framelayout.xml" value="0.221" />
+        <entry key="..\:/Andriod Studio/MTD319_ECA/app/src/main/res/drawable/search_view_bg.xml" value="0.221" />
         <entry key="..\:/Andriod Studio/MTD319_ECA/app/src/main/res/drawable/spinner_bg.xml" value="0.224" />
         <entry key="..\:/Andriod Studio/MTD319_ECA/app/src/main/res/drawable/spinner_item.xml" value="0.224" />
         <entry key="..\:/Andriod Studio/MTD319_ECA/app/src/main/res/drawable/textfield_bg.xml" value="0.224" />
         <entry key="..\:/Andriod Studio/MTD319_ECA/app/src/main/res/layout/activity_add_new_host_task.xml" value="0.36666666666666664" />
         <entry key="..\:/Andriod Studio/MTD319_ECA/app/src/main/res/layout/activity_explore.xml" value="0.21510416666666668" />
-        <entry key="..\:/Andriod Studio/MTD319_ECA/app/src/main/res/layout/activity_home.xml" value="0.2484375" />
+        <entry key="..\:/Andriod Studio/MTD319_ECA/app/src/main/res/layout/activity_home.xml" value="0.25" />
         <entry key="..\:/Andriod Studio/MTD319_ECA/app/src/main/res/layout/activity_host.xml" value="0.36666666666666664" />
         <entry key="..\:/Andriod Studio/MTD319_ECA/app/src/main/res/layout/activity_main.xml" value="0.19583333333333333" />
         <entry key="..\:/Andriod Studio/MTD319_ECA/app/src/main/res/layout/activity_sign_in.xml" value="0.33" />
         <entry key="..\:/Andriod Studio/MTD319_ECA/app/src/main/res/layout/activity_sign_up.xml" value="0.25" />
-        <entry key="..\:/Andriod Studio/MTD319_ECA/app/src/main/res/layout/home_listingitem.xml" value="0.365625" />
+        <entry key="..\:/Andriod Studio/MTD319_ECA/app/src/main/res/layout/home_listingitem.xml" value="0.33" />
         <entry key="..\:/Andriod Studio/MTD319_ECA/app/src/main/res/menu/bottom_navmenu.xml" value="0.31666666666666665" />
         <entry key="..\:/Andriod Studio/MTD319_TMA02/app/src/main/res/drawable/gradient_animation123.xml" value="0.1315" />
         <entry key="..\:/Andriod Studio/MTD319_TMA02/app/src/main/res/drawable/gradient_animation456.xml" value="0.1" />

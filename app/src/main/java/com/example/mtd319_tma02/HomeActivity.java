@@ -4,11 +4,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.PagerAdapter;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -34,6 +37,7 @@ public class HomeActivity extends AppCompatActivity {
 
     RecyclerView homeRecyclerView;
     HomeItemAdapter homeItemAdapter;
+    SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,10 +45,26 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         homeRecyclerView = findViewById(R.id.homeRecycleView);
+        searchView = findViewById(R.id.searchViewHome);
+        searchView.clearFocus();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                filterList(s);
+                return false;
+            }
+        });
 
         homeItemAdapter = new HomeItemAdapter(SignInActivity.listingItemA);
         homeRecyclerView.setAdapter(homeItemAdapter);
         homeRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+
 //        SignInActivity.callListingItem();
 //        RequestQueue queue = Volley.newRequestQueue(this);
 //        String url = "https://mtd319-ed05.restdb.io/rest/host?apikey=6357f014626b9c747864aeeb";
@@ -107,6 +127,19 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
+    private void filterList(String text) {
+        List<ListingItem> filteredList = new ArrayList<>();
+        for (ListingItem item : SignInActivity.listingItemA) {
+            if (item.getListingTitle().toLowerCase().contains(text.toLowerCase())){
+                filteredList.add(item);
+            }
+        }
+        if (filteredList.isEmpty()){
+            Toast.makeText(this,"No data found", Toast.LENGTH_SHORT).show();
+        }else{
+            homeItemAdapter.setFilteredList(filteredList);
+        }
+    }
 
 
 }
