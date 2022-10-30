@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -28,11 +29,15 @@ import java.util.logging.Handler;
 
 public class HomeItemAdapter extends RecyclerView.Adapter<MyHomeView> {
 
-    public HomeItemAdapter(List<ListingItem> listingItems) {
-        this.listingItems = listingItems;
-    }
     List<ListingItem> listingItems;
     Context context;
+    private ItemClickListener mItemListener;
+    public static int selected;
+
+    public HomeItemAdapter(List<ListingItem> listingItems, ItemClickListener itemClickListener) {
+        this.listingItems = listingItems;
+        this.mItemListener= itemClickListener;
+    }
 
     public void setFilteredList(List<ListingItem> filteredList){
         this.listingItems = filteredList;
@@ -57,16 +62,25 @@ public class HomeItemAdapter extends RecyclerView.Adapter<MyHomeView> {
         TextView titleItem = holder.titleItem;
         titleItem.setText(listingItem.listingTitle);
         TextView priceItem = holder.priceItem;
-        priceItem.setText(listingItem.price);
+        priceItem.setText("S$"+listingItem.price);
         TextView remainingCount = holder.remainingCount;
         remainingCount.setText(listingItem.quantity);
         TextView usernameText = holder.usernameSession;
-        usernameText.setText(listingItem.usernameSession);
+        usernameText.setText(listingItem.username);
         ImageView imageItem = holder.imageItem;
         Log.d("piccaso why you dont wan come out","123"   +listingItem.image);
 //        Picasso.get().load(listingItem.getImage()).into(imageItem);
         Glide.with(context).load(listingItem.getImage()).into(imageItem);
 
+       holder.itemView.setOnClickListener(view -> {
+           mItemListener.onItemClick(listingItems.get(position));
+           selected = position;
+       });
+
+    }
+
+    public interface ItemClickListener{
+        void onItemClick(ListingItem listingItem);
     }
 
     @Override

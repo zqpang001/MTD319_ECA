@@ -37,14 +37,21 @@ public class MainActivity extends AppCompatActivity {
 
     private int currentPage;
     boolean musicClick = false;
+    public static boolean isMediaManagerInit = false;
 
     private void initConfig() {
         Map config = new HashMap();
         config.put("cloud_name", "djyg6gc6k");
         config.put("api_key", "599563296253257");
         config.put("api_secret", "jOdaE_9KHP6BMATSsbW2zLqWka8");
-        MediaManager.init(this, config);
-        Log.d("media manager","media manager init success");
+        if (!isMediaManagerInit){
+            MediaManager.init(this, config);
+            Log.d("media manager","media manager init success");
+            isMediaManagerInit=true;
+        }else{
+            Log.d("media manager","media manager is already init");
+
+        }
     }
 
 

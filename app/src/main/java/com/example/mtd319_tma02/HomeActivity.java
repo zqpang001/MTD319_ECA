@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.PagerAdapter;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -38,13 +39,14 @@ public class HomeActivity extends AppCompatActivity {
     RecyclerView homeRecyclerView;
     HomeItemAdapter homeItemAdapter;
     SearchView searchView;
-
+    private static Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
+        HomeActivity.context = getApplicationContext();
         homeRecyclerView = findViewById(R.id.homeRecycleView);
+
         searchView = findViewById(R.id.searchViewHome);
         searchView.clearFocus();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -60,9 +62,17 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        homeItemAdapter = new HomeItemAdapter(SignInActivity.listingItemA);
+        homeItemAdapter = new HomeItemAdapter(SignInActivity.listingItemA, new HomeItemAdapter.ItemClickListener() {
+            @Override
+            public void onItemClick(ListingItem listingItem) {
+                showToast(listingItem.getListingTitle()+" Clicked!");
+                Intent intent = new Intent(context,ItemDetailActivity.class);
+                startActivity(intent);
+            }
+        });
         homeRecyclerView.setAdapter(homeItemAdapter);
         homeRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
 
 
 //        SignInActivity.callListingItem();
@@ -115,11 +125,11 @@ public class HomeActivity extends AppCompatActivity {
 //                                ,AddNewHostActivity_Task.class));
 //                        overridePendingTransition(0,0);
 //                        return true;
-//                    case R.id.profile:
-//                        startActivity(new Intent(getApplicationContext()
-//                                ,AddNewHostActivity_Task.class));
-//                        overridePendingTransition(0,0);
-//                        return true;
+                    case R.id.profile:
+                        startActivity(new Intent(getApplicationContext()
+                                ,ProfileActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
 
                 }
                 return false;
@@ -141,5 +151,8 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
+    private void showToast(String message){
+        Toast.makeText(this,message, Toast.LENGTH_SHORT).show();
+    }
 
 }
