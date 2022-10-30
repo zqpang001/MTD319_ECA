@@ -6,10 +6,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -22,6 +25,8 @@ import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class SignInActivity extends AppCompatActivity {
 
@@ -30,6 +35,10 @@ public class SignInActivity extends AppCompatActivity {
     EditText userNameEditText;
     EditText passwordEditText;
     CheckBox rmbBtn;
+    ProgressBar progressBar;
+    TextView progressText;
+    int counter=0;
+
     HashMap<String, String> credentialArrayList = new HashMap<String, String>();
 
     static ArrayList<ListingItem> listingItemA = new ArrayList<ListingItem>();
@@ -48,6 +57,9 @@ public class SignInActivity extends AppCompatActivity {
         passwordEditText = findViewById(R.id.password_SignIn_TxtField);
         rmbBtn = findViewById(R.id.rememberMe_checkBox);
         pref = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+//        progressBar = findViewById(R.id.progressBar);
+        progressBar = findViewById(R.id.progressBar);
+        progressText = findViewById(R.id.progressText);
         getPreferencesData();
         callListingItem();
 
@@ -140,21 +152,48 @@ public class SignInActivity extends AppCompatActivity {
     }
 
     public void checkSignInCredential(View view) {
-        if (credentialArrayList.containsKey(userNameEditText.getText().toString())) {
-            Log.d("checkSignIn", "correct username");
-            if (credentialArrayList.containsValue(passwordEditText.getText().toString())) {
-                Log.d("checkSignIn", "correct password");
-                Intent intent = new Intent(this, HomeActivity.class);
-                startActivity(intent);
-            } else {
-                Log.d("checkSignIn", "wrong password");
-            }
-        } else {
-            Log.d("suss", "wrong username");
-        }
-    }
+        counter=0;
+        progressBar.setVisibility(View.VISIBLE);
+        progressText.setVisibility(View.VISIBLE);
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(counter<=100) {
+                            progressText.setText(""+counter);
+                            progressBar.setProgress(counter);
+                            counter++;
+                            handler.postDelayed(this,20);
+                        }else{
+                            handler.removeCallbacks(this);
+                            if (credentialArrayList.containsKey(userNameEditText.getText().toString())) {
+                                Log.d("checkSignIn", "correct username");
+                                if (credentialArrayList.containsValue(passwordEditText.getText().toString())) {
+                                    Log.d("checkSignIn", "correct password");
+                                    Intent intent = new Intent(context, HomeActivity.class);
+                                    startActivity(intent);
+                                } else {
+                                    Log.d("checkSignIn", "wrong password");
+                                }
+                            } else {
+                                Log.d("suss", "wrong username");
+                            }
+                            progressBar.setVisibility(View.INVISIBLE);
+                            progressText.setVisibility(View.INVISIBLE);
 
-    public static void callListingItem() {
+                        }
+                    }
+                },200);
+
+
+            }
+
+
+
+
+
+
+    public static boolean callListingItem() {
         // for listItem Array
 
         RequestQueue queue2 = Volley.newRequestQueue(SignInActivity.context);
@@ -179,5 +218,6 @@ public class SignInActivity extends AppCompatActivity {
             }
         });
         queue2.add(stringRequest2);
+        return true;
     }
 }

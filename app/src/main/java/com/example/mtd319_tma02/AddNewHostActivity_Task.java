@@ -74,12 +74,12 @@ public class AddNewHostActivity_Task extends AppCompatActivity implements Adapte
     String imageUrl;
     private final int GALLERY_REQ_CODE=1000;
 
-
+    private static Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_host_task);
-
+        AddNewHostActivity_Task.context = getApplicationContext();
 
         categorySpinner = findViewById(R.id.categorySpinnerField);
         addNewPhoto = findViewById(R.id.addNewPhoto);
@@ -112,11 +112,12 @@ public class AddNewHostActivity_Task extends AppCompatActivity implements Adapte
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch(item.getItemId()){
                     case R.id.home:
-                        startActivity(new Intent(getApplicationContext()
-                                ,HomeActivity.class));
-                        overridePendingTransition(0,0);
-                        SignInActivity.callListingItem();
-                        return true;
+                        if(SignInActivity.callListingItem()){
+                            startActivity(new Intent(getApplicationContext()
+                                    ,HomeActivity.class));
+                            overridePendingTransition(0,0);
+                            return true;
+                        }
                     case R.id.host:
                         startActivity(new Intent(getApplicationContext()
                                 ,AddNewHostActivity_Task.class));
@@ -221,56 +222,56 @@ public class AddNewHostActivity_Task extends AppCompatActivity implements Adapte
         MediaManager.get().upload(filepath).callback(new UploadCallback() {
             @Override
             public void onStart(String requestId) {
-                Log.d("cloudinary: ","onStart");
+                Log.d("cloudinary: ", "onStart");
             }
 
             @Override
             public void onProgress(String requestId, long bytes, long totalBytes) {
-                Log.d("cloudinary: ","onProgress");
+                Log.d("cloudinary: ", "onProgress");
             }
 
             @Override
             public void onSuccess(String requestId, Map resultData) {
-                Log.d("cloudinary: ","onSuccess"+resultData.get("url").toString());
-                imageUrl=resultData.get("url").toString();
+                Log.d("cloudinary: ", "onSuccess" + resultData.get("url").toString());
+                imageUrl = resultData.get("url").toString();
+                RequestQueue queue = Volley.newRequestQueue(context);
+                String url = "https://mtd319-ed05.restdb.io/rest/host?apikey=6357f014626b9c747864aeeb";
+                StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                        response -> Toast.makeText(context, "Upload listing item success", Toast.LENGTH_SHORT).show(),
+                        error -> Toast.makeText(context, "Error upload listing item", Toast.LENGTH_SHORT).show()) {
+                    @Override
+                    protected Map<String, String> getParams() throws AuthFailureError {
+                        checkDeliveryAvailability();
+                        ListingItem listingItem = new ListingItem(spinnerSelected, listingTitleField.getText().toString(), priceTextField.getText().toString(), quantityAvailableTextField.getText().toString(), locationTextField.getText().toString(), isDeliveryAvailable, imageUrl);
+                        Gson gson = new Gson();
+                        String jsonString = gson.toJson(listingItem);
+                        Map map = gson.fromJson(jsonString, Map.class);
+                        Log.d("getMap: ", map.toString());
+
+
+                        return map;
+                    }
+
+
+                };
+                queue.add(stringRequest);
+//        intent = new Intent(this,AddNewHostActivity_Task.class);
+//        startActivity(intent);
             }
+
 
             @Override
             public void onError(String requestId, ErrorInfo error) {
-                Log.d("cloudinary: ","onError");
+                Log.d("cloudinary: ", "onError");
             }
 
             @Override
             public void onReschedule(String requestId, ErrorInfo error) {
-                Log.d("cloudinary: ","onReschedule");
+                Log.d("cloudinary: ", "onReschedule");
             }
         }).dispatch();
-
-        RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "https://mtd319-ed05.restdb.io/rest/host?apikey=6357f014626b9c747864aeeb";
-        StringRequest stringRequest = new StringRequest(Request.Method.POST,url,
-                response -> Toast.makeText(this,"Upload listing item success",Toast.LENGTH_SHORT).show(),
-                error -> Toast.makeText(this,"Error upload listing item",Toast.LENGTH_SHORT).show()) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                checkDeliveryAvailability();
-                ListingItem listingItem = new ListingItem(spinnerSelected,listingTitleField.getText().toString(),priceTextField.getText().toString(),quantityAvailableTextField.getText().toString(),locationTextField.getText().toString(),isDeliveryAvailable,imageUrl);
-                Gson gson = new Gson();
-                String jsonString = gson.toJson(listingItem);
-                Map map = gson.fromJson(jsonString, Map.class);
-                Log.d("getMap: ",map.toString());
-
-
-                return map;
-            }
-
-
-
-        };
-        queue.add(stringRequest);
-//        intent = new Intent(this,AddNewHostActivity_Task.class);
-//        startActivity(intent);
     }
+
 
     public void checkDeliveryAvailability(){
         if (deliveryCheckBox.isChecked()){
