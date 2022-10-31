@@ -40,7 +40,8 @@ public class SignInActivity extends AppCompatActivity {
     int counter = 0;
     public static String usernameSession;
 
-    HashMap<String, String> credentialArrayList = new HashMap<String, String>();
+    HashMap<String, String> credentialArrayMap = new HashMap<String, String>();
+    Credential[] credentialArrayList;
 
     static ArrayList<ListingItem> listingItemA = new ArrayList<ListingItem>();
     static ListingItem[] listingItemArray;
@@ -71,10 +72,10 @@ public class SignInActivity extends AppCompatActivity {
             public void onResponse(String response) {
                 Log.d("response: ", response);
                 Gson gson = new Gson();
-                Credential[] credentialArray = gson.fromJson(response, Credential[].class);
-                for (int i = 0; i < credentialArray.length; i++) {
-                    Log.d("suss", "username: " + credentialArray[i].username);
-                    credentialArrayList.put(credentialArray[i].username, credentialArray[i].password);
+                credentialArrayList = gson.fromJson(response, Credential[].class);
+                for (int i = 0; i < credentialArrayList.length; i++) {
+//                    Log.d("suss", "username: " + credentialArray[i].username);
+                    credentialArrayMap.put(credentialArrayList[i].username, credentialArrayList[i].password);
                 }
                 Log.d("credential list ", credentialArrayList.toString());
             }
@@ -167,9 +168,9 @@ public class SignInActivity extends AppCompatActivity {
                     handler.postDelayed(this, 15);
                 } else {
                     handler.removeCallbacks(this);
-                    if (credentialArrayList.containsKey(userNameEditText.getText().toString())) {
+                    if (credentialArrayMap.containsKey(userNameEditText.getText().toString())) {
                         Log.d("checkSignIn", "correct username");
-                        if (credentialArrayList.containsValue(passwordEditText.getText().toString())) {
+                        if (credentialArrayMap.containsValue(passwordEditText.getText().toString())) {
                             usernameSession=userNameEditText.getText().toString();
                             Log.d("checkSignIn", "correct password");
                             Intent intent = new Intent(context, HomeActivity.class);

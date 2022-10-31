@@ -101,7 +101,8 @@ public class SignUpActivity extends AppCompatActivity {
                     error -> Toast.makeText(this,"Sign Up Error",Toast.LENGTH_SHORT).show()) {
                 @Override
                 protected Map<String, String> getParams() throws AuthFailureError {
-                    Credential credential = new Credential(userNameEditText.getText().toString(),passwordEditText.getText().toString());
+                    Credential credential = new Credential(userNameEditText.getText().toString(),passwordEditText.getText().toString()
+                            ,emailEditText.getText().toString(),null);
                     Gson gson = new Gson();
                     String jsonString = gson.toJson(credential);
                     Map map = gson.fromJson(jsonString, Map.class);
