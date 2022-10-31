@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getSupportActionBar().hide();
 
         relativeLayout = findViewById(R.id.layout1);
         animationDrawable = (AnimationDrawable) relativeLayout.getBackground();
@@ -180,6 +181,17 @@ public class MainActivity extends AppCompatActivity {
                     backBtn.setText("Back");
                     backBtn.setVisibility(View.VISIBLE);
                     currentPage = position;
+
+                    nextBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            currentPage=0;
+                            Intent intent = new Intent();
+                            intent = new Intent(getApplicationContext(),SignInActivity.class);
+                            startActivity(intent);
+
+                        }
+                    });
                 }
             }
 
@@ -223,7 +235,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void clickSkipBtn(View view) {
         Intent intent = new Intent();
-            intent = new Intent(this,SignInActivity.class);
+        intent = new Intent(this,SignInActivity.class);
         startActivity(intent);
     }
 }

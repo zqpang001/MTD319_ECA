@@ -35,10 +35,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:background="#00144C2B"
+        android:onClick="clickSkipBtn"
         android:text="Skip"
         android:textColor="#24684B"
-        android:visibility="visible"
-        android:onClick="clickSkipBtn"/>
+        android:visibility="visible" />
 
     <Button
         android:id="@+id/learnBtn"

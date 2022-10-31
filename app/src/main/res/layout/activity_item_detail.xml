@@ -20,9 +20,9 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/borderConstraintLayout"
-        android:layout_width="320dp"
-        android:layout_height="350dp"
-        android:layout_marginTop="36dp"
+        android:layout_width="350dp"
+        android:layout_height="370dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/border_constraint_layout"
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
@@ -81,14 +81,14 @@
 
         <TextView
             android:id="@+id/priceDetail"
-            android:layout_width="wrap_content"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="196dp"
             android:text="Price"
             android:textColor="@color/teal_600"
+            android:textSize="24dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/titleDetail"
-            android:textSize="24dp"/>
+            app:layout_constraintTop_toTopOf="@+id/titleDetail" />
 
         <TextView
             android:id="@+id/usernameDetail"
@@ -130,7 +130,7 @@
 
         <TextView
             android:id="@+id/paymentMethodText2"
-            android:layout_width="wrap_content"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:text="Pre-Payment"
             android:textColor="@color/teal_600"
@@ -139,7 +139,7 @@
 
         <TextView
             android:id="@+id/deliveryMethodText2"
-            android:layout_width="wrap_content"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:text="Self-Collect"
             android:textColor="@color/teal_600"
@@ -157,16 +157,18 @@
 
         <TextView
             android:id="@+id/locationDetail2"
-            android:layout_width="80dp"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:text="Location"
             android:textColor="@color/teal_600"
             app:layout_constraintStart_toStartOf="@+id/usernameDetail2"
-            app:layout_constraintTop_toTopOf="@+id/locationDetail" />
+            app:layout_constraintTop_toTopOf="@+id/locationDetail"
+            android:ellipsize="end"
+            android:maxLines="3"/>
 
         <TextView
             android:id="@+id/usernameDetail2"
-            android:layout_width="wrap_content"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:text="username"
             android:textColor="@color/teal_600"
@@ -198,17 +200,16 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="320dp"
+        android:layout_width="350dp"
         android:layout_height="40dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="15dp"
         android:background="@drawable/confirmbutton_bg"
+        android:onClick="onClickPurchaseBtn"
         android:text="Purchase"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/borderConstraintLayout"
-        android:onClick="onClickPurchaseBtn"/>
+        app:layout_constraintTop_toBottomOf="@+id/borderConstraintLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

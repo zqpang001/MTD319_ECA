@@ -134,37 +134,36 @@ public class AddNewHostActivity_Task extends AppCompatActivity implements Adapte
         //Config cloudinary connection
 
 
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        //BottomNavigation
+        BottomNavigationView bottomNavigationView= findViewById(R.id.bottomNavigationView);
         //Set Host Selected
         bottomNavigationView.setSelectedItemId(R.id.host);
         //Bottom navigation selected
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
+                switch(item.getItemId()){
                     case R.id.home:
-                        if (SignInActivity.callListingItem()) {
-                            startActivity(new Intent(getApplicationContext()
-                                    , HomeActivity.class));
-                            overridePendingTransition(0, 0);
-                            return true;
-                        }
+                        startActivity(new Intent(getApplicationContext()
+                                ,HomeActivity.class));
+                        overridePendingTransition(0,0);
+                        SignInActivity.callListingItem();
+                        return true;
                     case R.id.host:
                         startActivity(new Intent(getApplicationContext()
-                                , AddNewHostActivity_Task.class));
-                        overridePendingTransition(0, 0);
+                                ,AddNewHostActivity_Task.class));
+                        overridePendingTransition(0,0);
                         return true;
-//                    case R.id.bag:
-//                        startActivity(new Intent(getApplicationContext()
-//                                ,AddNewHostActivity_Task.class));
-//                        overridePendingTransition(0,0);
-//                        return true;
-//                    case R.id.profile:
-//                        startActivity(new Intent(getApplicationContext()
-//                                ,AddNewHostActivity_Task.class));
-//                        overridePendingTransition(0,0);
-//                        return true;
-
+                    case R.id.bag:
+                        startActivity(new Intent(getApplicationContext()
+                                ,BagActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.profile:
+                        startActivity(new Intent(getApplicationContext()
+                                ,ProfileActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
                 }
                 return false;
             }
@@ -296,9 +295,13 @@ public class AddNewHostActivity_Task extends AppCompatActivity implements Adapte
 
 
                 };
+                SignInActivity.callListingItem();
+                if(ItemDetailActivity.isPurchased){
+                    ItemDetailActivity.isPurchased=false;
+                }
                 queue.add(stringRequest);
-//        intent = new Intent(this,AddNewHostActivity_Task.class);
-//        startActivity(intent);
+                intent = new Intent(getApplicationContext(),SuccessAddNewHostActivity.class);
+                startActivity(intent);
             }
 
 

@@ -30,6 +30,7 @@ public class ItemDetailActivity extends AppCompatActivity {
     TextView deliveryMethodText2;
     ImageView itemImageDetail;
     TextView quantityCount;
+    public static boolean isPurchased=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +53,11 @@ public class ItemDetailActivity extends AppCompatActivity {
         priceDetail.setText("S$"+SignInActivity.listingItemA.get(HomeItemAdapter.selected).price);
         usernameDetail2.setText(SignInActivity.listingItemA.get(HomeItemAdapter.selected).username);
         locationDetail2.setText(SignInActivity.listingItemA.get(HomeItemAdapter.selected).location);
-        deliveryMethodText2.setText(SignInActivity.listingItemA.get(HomeItemAdapter.selected).location);
+        if(SignInActivity.listingItemA.get(HomeItemAdapter.selected).deliveryAvailability.equalsIgnoreCase("true")) {
+            deliveryMethodText2.setText("Deliver to doorstep");
+        }else{
+            deliveryMethodText2.setText("Self-pickup");
+        }
         quantityCount.setText(SignInActivity.listingItemA.get(HomeItemAdapter.selected).quantity);
         Glide.with(this).load(SignInActivity.listingItemA.get(HomeItemAdapter.selected).getImage()).into(itemImageDetail );
 
@@ -78,7 +83,9 @@ public class ItemDetailActivity extends AppCompatActivity {
             }
         };
         queue.add(stringRequest);
-//        intent = new Intent(this,SignInActivity.class);
-//        startActivity(intent);
+        isPurchased=true;
+        Intent intent;
+        intent = new Intent(this,SuccessAddNewHostActivity.class);
+        startActivity(intent);
     }
 }

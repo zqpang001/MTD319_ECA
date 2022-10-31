@@ -12,6 +12,7 @@
         <entry key="..\:/Andriod Studio/MTD319_ECA/app/src/main/res/drawable/home_framelayout.xml" value="0.221" />
         <entry key="..\:/Andriod Studio/MTD319_ECA/app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.2475" />
         <entry key="..\:/Andriod Studio/MTD319_ECA/app/src/main/res/drawable/logout_btn.xml" value="0.195" />
+        <entry key="..\:/Andriod Studio/MTD319_ECA/app/src/main/res/drawable/recyclerview_animate.xml" value="0.1315" />
         <entry key="..\:/Andriod Studio/MTD319_ECA/app/src/main/res/drawable/search_view_bg.xml" value="0.221" />
         <entry key="..\:/Andriod Studio/MTD319_ECA/app/src/main/res/drawable/spinner_bg.xml" value="0.224" />
         <entry key="..\:/Andriod Studio/MTD319_ECA/app/src/main/res/drawable/spinner_item.xml" value="0.224" />
@@ -19,7 +20,7 @@
         <entry key="..\:/Andriod Studio/MTD319_ECA/app/src/main/res/layout/activity_add_new_host_task.xml" value="0.4205298013245033" />
         <entry key="..\:/Andriod Studio/MTD319_ECA/app/src/main/res/layout/activity_bag.xml" value="0.24166666666666667" />
         <entry key="..\:/Andriod Studio/MTD319_ECA/app/src/main/res/layout/activity_explore.xml" value="0.21510416666666668" />
-        <entry key="..\:/Andriod Studio/MTD319_ECA/app/src/main/res/layout/activity_home.xml" value="0.25" />
+        <entry key="..\:/Andriod Studio/MTD319_ECA/app/src/main/res/layout/activity_home.xml" value="0.33" />
         <entry key="..\:/Andriod Studio/MTD319_ECA/app/src/main/res/layout/activity_host.xml" value="0.36666666666666664" />
         <entry key="..\:/Andriod Studio/MTD319_ECA/app/src/main/res/layout/activity_item_detail.xml" value="0.25" />
         <entry key="..\:/Andriod Studio/MTD319_ECA/app/src/main/res/layout/activity_main.xml" value="0.19583333333333333" />
@@ -27,6 +28,7 @@
         <entry key="..\:/Andriod Studio/MTD319_ECA/app/src/main/res/layout/activity_profile.xml" value="0.25" />
         <entry key="..\:/Andriod Studio/MTD319_ECA/app/src/main/res/layout/activity_sign_in.xml" value="0.33" />
         <entry key="..\:/Andriod Studio/MTD319_ECA/app/src/main/res/layout/activity_sign_up.xml" value="0.25" />
+        <entry key="..\:/Andriod Studio/MTD319_ECA/app/src/main/res/layout/activity_success_add_new_host.xml" value="0.33" />
         <entry key="..\:/Andriod Studio/MTD319_ECA/app/src/main/res/layout/activity_update_order.xml" value="0.24166666666666667" />
         <entry key="..\:/Andriod Studio/MTD319_ECA/app/src/main/res/layout/activity_update_order_collection.xml" value="0.1984375" />
         <entry key="..\:/Andriod Studio/MTD319_ECA/app/src/main/res/layout/borderconstraintlayout.xml" value="0.24166666666666667" />

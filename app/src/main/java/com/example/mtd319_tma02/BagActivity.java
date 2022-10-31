@@ -1,12 +1,16 @@
 package com.example.mtd319_tma02;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.TableLayout;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 
 public class BagActivity extends AppCompatActivity {
@@ -28,6 +32,40 @@ public class BagActivity extends AppCompatActivity {
         vpAdapter.addFragment(new MyListingFragment(),"My Listings");
         vpAdapter.addFragment(new OrderSummaryFragment(),"Order Summary");
         viewPager.setAdapter(vpAdapter);
+
+        //BottomNavigation
+        BottomNavigationView bottomNavigationView= findViewById(R.id.bottomNavigationView);
+        //Set Host Selected
+        bottomNavigationView.setSelectedItemId(R.id.bag);
+        //Bottom navigation selected
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch(item.getItemId()){
+                    case R.id.home:
+                        startActivity(new Intent(getApplicationContext()
+                                ,HomeActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.host:
+                        startActivity(new Intent(getApplicationContext()
+                                ,AddNewHostActivity_Task.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.bag:
+                        startActivity(new Intent(getApplicationContext()
+                                ,BagActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.profile:
+                        startActivity(new Intent(getApplicationContext()
+                                ,ProfileActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+                return false;
+            }
+        });
 
     }
 

@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -36,10 +38,10 @@ public class HomeItemAdapter extends RecyclerView.Adapter<MyHomeView> {
 
     public HomeItemAdapter(List<ListingItem> listingItems, ItemClickListener itemClickListener) {
         this.listingItems = listingItems;
-        this.mItemListener= itemClickListener;
+        this.mItemListener = itemClickListener;
     }
 
-    public void setFilteredList(List<ListingItem> filteredList){
+    public void setFilteredList(List<ListingItem> filteredList) {
         this.listingItems = filteredList;
         notifyDataSetChanged();
     }
@@ -47,10 +49,10 @@ public class HomeItemAdapter extends RecyclerView.Adapter<MyHomeView> {
     @NonNull
     @Override
     public MyHomeView onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        context =  parent.getContext();
+        context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
-        View itemsView = inflater.inflate(R.layout.home_listingitem,parent,false);
-        MyHomeView viewHolder= new MyHomeView(itemsView);
+        View itemsView = inflater.inflate(R.layout.home_listingitem, parent, false);
+        MyHomeView viewHolder = new MyHomeView(itemsView);
 
         return viewHolder;
 
@@ -62,30 +64,32 @@ public class HomeItemAdapter extends RecyclerView.Adapter<MyHomeView> {
         TextView titleItem = holder.titleItem;
         titleItem.setText(listingItem.listingTitle);
         TextView priceItem = holder.priceItem;
-        priceItem.setText("S$"+listingItem.price);
+        priceItem.setText("S$" + listingItem.price);
         TextView remainingCount = holder.remainingCount;
         remainingCount.setText(listingItem.quantity);
         TextView usernameText = holder.usernameSession;
         usernameText.setText(listingItem.username);
         ImageView imageItem = holder.imageItem;
-        Log.d("piccaso why you dont wan come out","123"   +listingItem.image);
+        Log.d("piccaso why you dont wan come out", "123" + listingItem.image);
 //        Picasso.get().load(listingItem.getImage()).into(imageItem);
         Glide.with(context).load(listingItem.getImage()).into(imageItem);
+        Animation animation = AnimationUtils.loadAnimation(holder.itemView.getContext(),android.R.anim.slide_in_left);
+        holder.itemView.startAnimation(animation);
 
-       holder.itemView.setOnClickListener(view -> {
-           mItemListener.onItemClick(listingItems.get(position));
-           selected = position;
-       });
+        holder.itemView.setOnClickListener(view -> {
+            mItemListener.onItemClick(listingItems.get(position));
+            selected = position;
+        });
 
     }
 
-    public interface ItemClickListener{
+    public interface ItemClickListener {
         void onItemClick(ListingItem listingItem);
     }
 
     @Override
     public int getItemCount() {
-        Log.d("itemcount", "getItemCount: "+listingItems.size());
+        Log.d("itemcount", "getItemCount: " + listingItems.size());
         return listingItems.size();
     }
 }

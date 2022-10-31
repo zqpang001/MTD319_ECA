@@ -12,6 +12,7 @@ public class HostActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_host);
+        getSupportActionBar().hide();
     }
 
     public void mainActivity(View view) {

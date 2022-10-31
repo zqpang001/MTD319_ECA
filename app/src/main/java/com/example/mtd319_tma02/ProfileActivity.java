@@ -50,6 +50,7 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         ProfileActivity.context = getApplicationContext();
+        getSupportActionBar().setTitle("Profile Detail");
 
 
         usernameTextFieldProf = findViewById(R.id.usernameTextFieldProf);
@@ -60,9 +61,10 @@ public class ProfileActivity extends AppCompatActivity {
         getProfileDetail();
         handler.postDelayed(setText, 3000);
 
+        //BottomNavigation
         BottomNavigationView bottomNavigationView= findViewById(R.id.bottomNavigationView);
         //Set Host Selected
-        bottomNavigationView.setSelectedItemId(R.id.home);
+        bottomNavigationView.setSelectedItemId(R.id.profile);
         //Bottom navigation selected
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -78,17 +80,16 @@ public class ProfileActivity extends AppCompatActivity {
                                 ,AddNewHostActivity_Task.class));
                         overridePendingTransition(0,0);
                         return true;
-//                    case R.id.bag:
-//                        startActivity(new Intent(getApplicationContext()
-//                                ,AddNewHostActivity_Task.class));
-//                        overridePendingTransition(0,0);
-//                        return true;
+                    case R.id.bag:
+                        startActivity(new Intent(getApplicationContext()
+                                ,BagActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
                     case R.id.profile:
                         startActivity(new Intent(getApplicationContext()
                                 ,ProfileActivity.class));
                         overridePendingTransition(0,0);
                         return true;
-
                 }
                 return false;
             }

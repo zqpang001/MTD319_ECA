@@ -44,7 +44,9 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        getSupportActionBar().setTitle("Home");
         HomeActivity.context = getApplicationContext();
+
         homeRecyclerView = findViewById(R.id.homeRecycleView);
 
         searchView = findViewById(R.id.searchViewHome);

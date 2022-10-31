@@ -90,8 +90,8 @@ public class MyListingFragment extends Fragment {
             public void onItemClick(ListingItem listingItem) {
 //                showToast(listingItem.getListingTitle()+" Clicked!");
                 Log.d("fragment", "onItemClick: This is listing fragment");
-                Intent intent = new Intent(getContext(),SignInActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(getContext(),SignInActivity.class);
+//                startActivity(intent);
             }
         });
         recyclerView.setAdapter(homeItemAdapter);
