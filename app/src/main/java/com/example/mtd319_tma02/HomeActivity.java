@@ -120,11 +120,11 @@ public class HomeActivity extends AppCompatActivity {
                                 ,AddNewHostActivity_Task.class));
                         overridePendingTransition(0,0);
                         return true;
-//                    case R.id.bag:
-//                        startActivity(new Intent(getApplicationContext()
-//                                ,AddNewHostActivity_Task.class));
-//                        overridePendingTransition(0,0);
-//                        return true;
+                    case R.id.bag:
+                        startActivity(new Intent(getApplicationContext()
+                                ,BagActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
                     case R.id.profile:
                         startActivity(new Intent(getApplicationContext()
                                 ,ProfileActivity.class));

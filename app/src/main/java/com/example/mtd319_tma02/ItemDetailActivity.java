@@ -2,12 +2,23 @@ package com.example.mtd319_tma02;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
+
+import java.util.Map;
 
 public class ItemDetailActivity extends AppCompatActivity {
 
@@ -47,4 +58,25 @@ public class ItemDetailActivity extends AppCompatActivity {
         Log.d("Listing Item","in ItemDetailActivity: "+ HomeItemAdapter.selected);
     }
 
+    public void onClickPurchaseBtn(View view) {
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = "https://mtd319-ed05.restdb.io/rest/purchase?apikey=6357f014626b9c747864aeeb";
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,url,
+                response -> Toast.makeText(this,"Purchase Success",Toast.LENGTH_SHORT).show(),
+                error -> Toast.makeText(this,"Purchase Error",Toast.LENGTH_SHORT).show()) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Purchase purchase = new Purchase(titleDetail.getText().toString(),priceDetail.getText().toString()
+                        ,SignInActivity.usernameSession,"Pending collection ");
+                Gson gson = new Gson();
+                String jsonString = gson.toJson(purchase);
+                Map map = gson.fromJson(jsonString, Map.class);
+                Log.d("getMap: ",map.toString());
+                return map;
+            }
+        };
+        queue.add(stringRequest);
+//        intent = new Intent(this,SignInActivity.class);
+//        startActivity(intent);
+    }
 }

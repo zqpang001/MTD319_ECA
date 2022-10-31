@@ -25,6 +25,5 @@ public class MyHomeView extends RecyclerView.ViewHolder {
         imageItem = itemView.findViewById(R.id.imageItem);
         usernameSession = itemView.findViewById(R.id.usernameText);
 
-
     }
 }
