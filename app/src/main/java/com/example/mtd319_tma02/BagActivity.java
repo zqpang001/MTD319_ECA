@@ -23,9 +23,10 @@ public class BagActivity extends AppCompatActivity {
         viewPager= findViewById(R.id.viewPager);
 
         tabLayout.setupWithViewPager(viewPager);
+
         VPAdapter vpAdapter = new VPAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         vpAdapter.addFragment(new MyListingFragment(),"My Listings");
-        vpAdapter.addFragment(new MyListingFragment(),"Order Summary");
+        vpAdapter.addFragment(new OrderSummaryFragment(),"Order Summary");
         viewPager.setAdapter(vpAdapter);
 
     }

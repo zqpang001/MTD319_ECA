@@ -52,6 +52,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 public class AddNewHostActivity_Task extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     ImageView imgMain;
@@ -235,6 +236,8 @@ public class AddNewHostActivity_Task extends AppCompatActivity implements Adapte
                 Log.d("cloudinary: ", "onSuccess" + resultData.get("url").toString());
                 imageUrl = resultData.get("url").toString();
                 RequestQueue queue = Volley.newRequestQueue(context);
+                UUID uuid = UUID.randomUUID();
+                String uuidAsString = uuid.toString();
                 String url = "https://mtd319-ed05.restdb.io/rest/host?apikey=6357f014626b9c747864aeeb";
                 StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                         response -> Toast.makeText(context, "Upload listing item success", Toast.LENGTH_SHORT).show(),
@@ -243,7 +246,7 @@ public class AddNewHostActivity_Task extends AppCompatActivity implements Adapte
                     protected Map<String, String> getParams() throws AuthFailureError {
                         checkDeliveryAvailability();
                         ListingItem listingItem = new ListingItem(spinnerSelected, listingTitleField.getText().toString(), priceTextField.getText().toString()
-                                ,quantityAvailableTextField.getText().toString(), locationTextField.getText().toString(), isDeliveryAvailable, imageUrl,SignInActivity.usernameSession);
+                                ,quantityAvailableTextField.getText().toString(), locationTextField.getText().toString(), isDeliveryAvailable, imageUrl,SignInActivity.usernameSession,uuidAsString);
                         Gson gson = new Gson();
                         String jsonString = gson.toJson(listingItem);
                         Map map = gson.fromJson(jsonString, Map.class);

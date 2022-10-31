@@ -11,8 +11,10 @@ public class ListingItem {
     public String deliveryAvailability;
     public String image;
     public String username;
+    public String uuid;
 
-    public ListingItem(String category,String listingTitle, String price, String quantity, String location,String deliveryAvailability,String image,String username){
+    public ListingItem(String category,String listingTitle, String price, String quantity
+            ,String location,String deliveryAvailability,String image,String username,String uuid){
         this.category=category;
         this.listingTitle=listingTitle;
         this.price=price;
@@ -21,6 +23,7 @@ public class ListingItem {
         this.deliveryAvailability=deliveryAvailability;
         this.image=image;
         this.username=username;
+        this.uuid=uuid;
     }
 
     public String getImage() {

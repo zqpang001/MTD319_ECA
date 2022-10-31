@@ -89,6 +89,7 @@ public class MyListingFragment extends Fragment {
             @Override
             public void onItemClick(ListingItem listingItem) {
 //                showToast(listingItem.getListingTitle()+" Clicked!");
+                Log.d("fragment", "onItemClick: This is listing fragment");
                 Intent intent = new Intent(getContext(),SignInActivity.class);
                 startActivity(intent);
             }
@@ -102,13 +103,13 @@ public class MyListingFragment extends Fragment {
         listingItemCurrentUser.removeAll(listingItemCurrentUser);
         Log.d("data initiaize", "usernameSession" + SignInActivity.usernameSession);
         for (int i = 0; i < SignInActivity.listingItemArray.length; i++) {
-            Log.d("data initiaize", "h" + SignInActivity.listingItemArray[i].username);
+//            Log.d("data initiaize", "h" + SignInActivity.listingItemArray[i].username);
 
             if (SignInActivity.listingItemArray[i].username.equals(SignInActivity.usernameSession)) {
-                Log.d("data initiaize", "inside if" + SignInActivity.listingItemArray[i].username);
+//                Log.d("data initiaize", "inside if" + SignInActivity.listingItemArray[i].username);
                 listingItemCurrentUser.add(SignInActivity.listingItemArray[i]);
             }
-            Log.d("data initiaize", "h" + listingItemCurrentUser.toString());
+//            Log.d("data initiaize", "h" + listingItemCurrentUser.toString());
 
         }
 

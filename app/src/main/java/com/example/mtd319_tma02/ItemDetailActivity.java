@@ -19,6 +19,7 @@ import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 
 import java.util.Map;
+import java.util.UUID;
 
 public class ItemDetailActivity extends AppCompatActivity {
 
@@ -59,6 +60,7 @@ public class ItemDetailActivity extends AppCompatActivity {
     }
 
     public void onClickPurchaseBtn(View view) {
+
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = "https://mtd319-ed05.restdb.io/rest/purchase?apikey=6357f014626b9c747864aeeb";
         StringRequest stringRequest = new StringRequest(Request.Method.POST,url,
@@ -67,7 +69,7 @@ public class ItemDetailActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Purchase purchase = new Purchase(titleDetail.getText().toString(),priceDetail.getText().toString()
-                        ,SignInActivity.usernameSession,"Pending collection ");
+                        ,SignInActivity.usernameSession,"Pending collection ",SignInActivity.listingItemA.get(HomeItemAdapter.selected).uuid);
                 Gson gson = new Gson();
                 String jsonString = gson.toJson(purchase);
                 Map map = gson.fromJson(jsonString, Map.class);
