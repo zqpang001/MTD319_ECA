@@ -101,7 +101,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
-
+        //BottomNavigation
         BottomNavigationView bottomNavigationView= findViewById(R.id.bottomNavigationView);
         //Set Host Selected
         bottomNavigationView.setSelectedItemId(R.id.home);
@@ -130,7 +130,6 @@ public class HomeActivity extends AppCompatActivity {
                                 ,ProfileActivity.class));
                         overridePendingTransition(0,0);
                         return true;
-
                 }
                 return false;
             }

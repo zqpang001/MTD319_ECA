@@ -17,15 +17,6 @@
         app:srcCompat="@drawable/addnewphoto"
         android:onClick="addNewPhoto"/>
 
-    <ImageView
-        android:id="@+id/testImage"
-        android:layout_width="78dp"
-        android:layout_height="82dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toEndOf="@+id/addNewPhoto"
-        app:layout_constraintTop_toTopOf="@+id/addNewPhoto"
-        tools:srcCompat="@tools:sample/avatars" />
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -181,20 +172,44 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/location" />
 
+            <TextView
+                android:id="@+id/locationText"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/locationTextField"
+                app:layout_constraintStart_toStartOf="@id/price"
+                android:layout_marginTop="12dp"
+                android:text="Location Message">
+
+            </TextView>
+
+            <Button
+                android:id="@+id/getLocationBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/logout_btn"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:text="Get Address"
+                android:textAllCaps="false"
+                android:textColor="@color/teal_600"
+                app:layout_constraintEnd_toEndOf="@+id/locationTextField"
+                app:layout_constraintTop_toTopOf="@+id/locationText" />
+
             <Button
                 android:id="@+id/confirmButton"
                 android:layout_width="320dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="80dp"
+                android:layout_marginTop="15dp"
                 android:background="@drawable/confirmbutton_bg"
+                android:onClick="confirmUploadListingItem"
                 android:text="Confirm"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginTop="20dp"
-                android:onClick="confirmUploadListingItem"
-                app:layout_constraintStart_toStartOf="@+id/locationTextField"
-                app:layout_constraintTop_toBottomOf="@+id/locationTextField" />
+                app:layout_constraintStart_toStartOf="@+id/locationText"
+                app:layout_constraintTop_toBottomOf="@+id/getLocationBtn" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
