@@ -3,6 +3,7 @@ package com.example.mtd319_tma02;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -14,12 +15,15 @@ public class SuccessAddNewHostActivity extends AppCompatActivity {
 
     TextView successText;
     TextView paragraphText;
+    MediaPlayer mediaPlayer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_success_add_new_host);
         getSupportActionBar().setTitle("");
 
+        mediaPlayer = MediaPlayer.create(this, R.raw.successaudio);
+        mediaPlayer.start();
         successText = findViewById(R.id.successText);
         paragraphText = findViewById(R.id.paragraphText);
         if (ItemDetailActivity.isPurchased){

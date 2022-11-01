@@ -100,7 +100,6 @@ public class OrderSummaryFragment extends Fragment {
         recyclerViewSummary.setLayoutManager(new LinearLayoutManager(getContext()));
 
 
-
     }
 
     private Runnable dataInitiaize = new Runnable() {
@@ -116,11 +115,12 @@ public class OrderSummaryFragment extends Fragment {
                 for (int y = 0; y < purchasedList.size(); y++) {
 //                Log.d("data initiaize", "h" + SignInActivity.listingItemArray[i].username);
                     Log.d("data initiaize", "check data " + SignInActivity.listingItemArray[i].uuid + "purchasedList " + purchasedList.get(y));
-                    listingitemString=SignInActivity.listingItemArray[i].uuid;
-                    purchaseitemString=purchasedList.get(y);
-                    if(listingitemString!=null && purchaseitemString!=null)
+                    listingitemString = SignInActivity.listingItemArray[i].uuid;
+                    purchaseitemString = purchasedList.get(y);
+                    if (listingitemString != null && purchaseitemString != null) {
                         if (listingitemString.equals(purchaseitemString)) {
                             listingItemOrderSummary.add(SignInActivity.listingItemArray[i]);
+                        }
                     }
                 }
             }
@@ -135,10 +135,11 @@ public class OrderSummaryFragment extends Fragment {
             });
             recyclerViewSummary.setAdapter(homeItemAdapter);
         }
-    } ;
+    };
 
     public void getPurchaseData() {
         // for listItem Array
+//        ArrayList<String> purchasedList = new ArrayList<>();
         RequestQueue queue = Volley.newRequestQueue(getContext());
         String url = "https://mtd319-ed05.restdb.io/rest/purchase?apikey=6357f014626b9c747864aeeb";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
@@ -152,7 +153,7 @@ public class OrderSummaryFragment extends Fragment {
                     Log.d("Purchase items: ", " purchase title " + purchaseArrayList[i].buyer);
                     purchasedList.add(purchaseArrayList[i].uuid);
                 }
-                Log.d("purchasedList " , ""+purchasedList);
+                Log.d("purchasedList ", "" + purchasedList);
 
             }
         }, new Response.ErrorListener() {

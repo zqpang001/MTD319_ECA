@@ -22,6 +22,7 @@ public class BagActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bag);
+        getSupportActionBar().setTitle("Shopping Bag");
 
         tabLayout= findViewById(R.id.tabLayout);
         viewPager= findViewById(R.id.viewPager);

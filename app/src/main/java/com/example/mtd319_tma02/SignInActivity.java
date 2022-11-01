@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
@@ -47,13 +49,19 @@ public class SignInActivity extends AppCompatActivity {
     static ListingItem[] listingItemArray;
 
     private static Context context;
+    MediaPlayer mediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
         SignInActivity.context = getApplicationContext();
+        getSupportActionBar().hide();
+        mediaPlayer = MediaPlayer.create(this, R.raw.successaudio);
+
+
 
         userNameEditText = findViewById(R.id.userName_SignIn_TxtField);
         passwordEditText = findViewById(R.id.password_SignIn_TxtField);
@@ -172,6 +180,7 @@ public class SignInActivity extends AppCompatActivity {
                         Log.d("checkSignIn", "correct username");
                         if (credentialArrayMap.containsValue(passwordEditText.getText().toString())) {
                             usernameSession=userNameEditText.getText().toString();
+                            mediaPlayer.start();
                             Log.d("checkSignIn", "correct password");
                             Intent intent = new Intent(context, HomeActivity.class);
                             startActivity(intent);

@@ -1,17 +1,13 @@
 package com.example.mtd319_tma02;
 
-import static androidx.constraintlayout.motion.widget.Debug.getLocation;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -24,13 +20,10 @@ import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.text.Html;
 import android.util.Base64;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -44,30 +37,17 @@ import android.widget.Toast;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.cloudinary.android.MediaManager;
 import com.cloudinary.android.callback.ErrorInfo;
 import com.cloudinary.android.callback.UploadCallback;
 import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
-import com.karumi.dexter.Dexter;
-import com.karumi.dexter.PermissionToken;
-import com.karumi.dexter.listener.PermissionDeniedResponse;
-import com.karumi.dexter.listener.PermissionGrantedResponse;
-import com.karumi.dexter.listener.PermissionRequest;
-import com.karumi.dexter.listener.single.PermissionListener;
 
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -82,6 +62,8 @@ public class AddNewHostActivity_Task extends AppCompatActivity implements Adapte
     EditText listingTitleField;
     EditText priceTextField;
     EditText quantityAvailableTextField;
+    TextView longtitudeText;
+    TextView latitudeText;
     TextView locationText;
     CheckBox deliveryCheckBox;
     EditText locationTextField;
@@ -94,6 +76,7 @@ public class AddNewHostActivity_Task extends AppCompatActivity implements Adapte
     String isDeliveryAvailable;
     Uri filepath;
     String imageUrl;
+
     private final int GALLERY_REQ_CODE = 1000;
     FusedLocationProviderClient fusedLocationProviderClient;
     LocationManager locationManager;
@@ -113,16 +96,14 @@ public class AddNewHostActivity_Task extends AppCompatActivity implements Adapte
         quantityAvailableTextField = findViewById(R.id.quantityAvailableTextField);
         deliveryCheckBox = findViewById(R.id.deliveryCheckBox);
         locationTextField = findViewById(R.id.locationTextField);
-        locationText = findViewById(R.id.locationText);
+        locationText = findViewById(R.id.longtitudeText);
         getLocationBtn = findViewById(R.id.getLocationBtn);
         confirmButton = findViewById(R.id.confirmButton);
 
 
+
 //        imgMain=findViewById(R.id.testImage);
 //        initConfig();
-
-//        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
-
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.category, android.R.layout.simple_spinner_dropdown_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

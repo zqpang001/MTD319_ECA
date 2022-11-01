@@ -173,7 +173,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/location" />
 
             <TextView
-                android:id="@+id/locationText"
+                android:id="@+id/longtitudeText"
                 android:layout_width="180dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/locationTextField"
@@ -194,7 +194,7 @@
                 android:textAllCaps="false"
                 android:textColor="@color/teal_600"
                 app:layout_constraintEnd_toEndOf="@+id/locationTextField"
-                app:layout_constraintTop_toTopOf="@+id/locationText" />
+                app:layout_constraintTop_toTopOf="@+id/longtitudeText" />
 
             <Button
                 android:id="@+id/confirmButton"
@@ -208,7 +208,7 @@
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/locationText"
+                app:layout_constraintStart_toStartOf="@+id/longtitudeText"
                 app:layout_constraintTop_toBottomOf="@+id/getLocationBtn" />
 
 
